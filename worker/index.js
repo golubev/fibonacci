@@ -23,3 +23,5 @@ sub.on('message', (channel, message) => {
         calculateFibonacci(messageAsInt)
     );
 });
+
+sub.subscribe('insert');
