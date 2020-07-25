@@ -61,21 +61,23 @@ class Fibonacci extends Component {
     }
 
     render() {
-        <div>
-            <form onSubmit={this.handleSubmit}>
-                <label>Enter your index:</label>
-                <input
-                    value={this.state.index}
-                    onChange={event => this.setState({ index: event.target.value })} />
-                <button>Submit</button>
-            </form>
+        return (
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <label>Enter your index:</label>
+                    <input
+                        value={this.state.index}
+                        onChange={event => this.setState({ index: event.target.value })} />
+                    <button>Submit</button>
+                </form>
 
-            <h3>Indexes I've seen:</h3>
-            {this.renderSeenIndexes()}
+                <h3>Indexes I've seen:</h3>
+                {this.renderSeenIndexes()}
 
-            <h3>Calculated values:</h3>
-            {this.renderValues()}
-        </div>
+                <h3>Calculated values:</h3>
+                {this.renderValues()}
+            </div>
+        );
     }
 }
 
