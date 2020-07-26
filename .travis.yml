@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t golubev89/fibonacci-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true golubev89/fibonacci-test npm test
+
+after_success:
+  - docker build -t golubev89/fibonacci-client ./client
+  - docker build -t golubev89/fibonacci-nginx ./nginx
+  - docker build -t golubev89/fibonacci-server ./server
+  - docker build -t golubev89/fibonacci-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push golubev89/fibonacci-client
+  - docker push golubev89/fibonacci-nginx
+  - docker push golubev89/fibonacci-server
+  - docker push golubev89/fibonacci-worker
